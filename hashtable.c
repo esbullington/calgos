@@ -9,13 +9,13 @@
 #define MAX_ARRAY 1000
 
 /* D. J. Bernstein hash function */
-static size_t djb_hash(const char *str)
+size_t djb_hash(char *str)
 {
-	unsigned long hash = 5381;
+	size_t hash = 5381;
 	int c;
 
 	while ((c = *str++))
-		hash = ((hash << 5) + hash) + c; /* hash * 33 + c */
+		hash = ((hash << 5) + hash) + c;
 
 	return hash;
 }
@@ -27,7 +27,7 @@ bool hashtable_init(tHashtable *ht) {
 	return true;
 }
 
-bool hashtable_set(tHashtable *ht, const char *key, char *value)
+bool hashtable_set(tHashtable *ht, char *key, char *value)
 {
     size_t count, probe_by, hashed_key;
 
@@ -57,7 +57,7 @@ bool hashtable_set(tHashtable *ht, const char *key, char *value)
 
 }
 
-bool hashtable_get(tHashtable *ht, const char *key, char **value)
+bool hashtable_get(tHashtable *ht, char *key, char **value)
 {
     size_t count, probe_by, hashed_key;
 

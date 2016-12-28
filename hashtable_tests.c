@@ -37,10 +37,11 @@ void test_hashtable_get_collisions(CuTest *tc)
 
     hashtable_init(ht);
 
-    hashtable_set(ht, "testk", "testv");
+    hashtable_set(ht, "playright", "testdram");
+    hashtable_set(ht, "snush", "testvivency");
     char *val = malloc(256);
-    hashtable_get(ht, "testk", &val);
-    char *expected = "testv";
+    hashtable_get(ht, "playright", &val);
+    char *expected = "testdram";
 	CuAssertStrEquals(tc, expected, val);
 }
 
