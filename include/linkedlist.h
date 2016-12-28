@@ -4,6 +4,7 @@
 
 typedef struct Node{ 
     struct Node *next;
+    struct Node *prev;
     int data;
 } tNode;
 
@@ -16,5 +17,7 @@ typedef struct {
 int allocate_list(tLinkedList *ll, int n);
 int ll_push(tLinkedList *ll, int data);
 int ll_pop(tLinkedList *ll);
+int ll_find(tLinkedList *ll, int data);
+int ll_get_index(tLinkedList *ll, int i, tNode *node);
 
 #endif // LINKEDLIST_H_
