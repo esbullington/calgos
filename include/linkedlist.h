@@ -19,5 +19,6 @@ int ll_push(tLinkedList *ll, int data);
 int ll_pop(tLinkedList *ll);
 int ll_find(tLinkedList *ll, int data);
 int ll_get_index(tLinkedList *ll, int i, tNode *node);
+int ll_from_array(tLinkedList *ll, int arr[], int size);
 
 #endif // LINKEDLIST_H_

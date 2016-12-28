@@ -1,26 +1,6 @@
 #include "cutest.h"
 #include "linkedlist.h"
 
-void test_linked_list(void)
-{
-    tLinkedList *ll;
-
-    ll = malloc( sizeof (tLinkedList));
-
-    if (ll == NULL) {
-        perror("malloc failed");
-        exit(EXIT_FAILURE); 
-    } 
-
-    allocate_list(ll, 20);
-
-    TEST_CHECK_(ll->curr->data == 0, "Test first list item.");
-	while (ll->curr->next != NULL) {
-		ll->curr = ll->curr->next;
-	}
-    TEST_CHECK_(ll->curr->data == 19, "Test last list item.");
-}
-
 void test_ll_push(void)
 {
     tLinkedList *ll;
@@ -113,11 +93,33 @@ void test_ll_get_index(void)
     TEST_CHECK_(ret_code == -1, "Test get index.");
 }
 
+void test_ll_from_array(void)
+{
+    tLinkedList *ll;
+    ll = malloc( sizeof (tLinkedList));
+
+    if (ll == NULL) {
+        perror("malloc failed");
+        exit(EXIT_FAILURE); 
+    } 
+
+    int arr[] = {43, 52, 89, 1, 2, 3};
+
+    ll_from_array(ll, arr, 6);
+
+    TEST_CHECK_(ll->first->data == 43, "Test first item.");
+    TEST_CHECK_(ll->last->data == 3, "Test last item.");
+
+    ll_pop(ll);
+    TEST_CHECK_(ll->last->data == 2, "Test last item.");
+}
+
+
 TEST_LIST = {
-    { "linked list",  test_linked_list },
     { "linked list push",  test_ll_push },
     { "linked list pop",  test_ll_pop },
     { "linked list find",  test_ll_find },
     { "linked list get index",  test_ll_get_index },
+    { "linked list from array",  test_ll_from_array },
     { 0 }
 };
