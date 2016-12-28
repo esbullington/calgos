@@ -1,15 +1,13 @@
 
-
 CC = gcc
 
-EXE = program
 TEST_EXE = unittests
 
 ODIR = obj
 _OBJ = linkedlist.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
-IDIR = inc
+IDIR = include
 _DEPS = linkedlist.h
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
@@ -23,20 +21,16 @@ $(ODIR)/%.o: %.c $(DEPS)
 	@mkdir -p obj
 	$(CC) -c -o $@ $< $(CFLAGS)
 
-$(EXE): $(OBJ) main.c
-	$(CC) -o $@ $^ $(CFLAGS)
-
-
 test: $(OBJ)
-	$(CC) -o $(TEST_EXE) $^ test.c $(CFLAGS)
+	$(CC) -o $(TEST_EXE) $^ tests.c $(CFLAGS)
 
-all: $(EXE)
+all: test
 
 clean:
-	rm -f $(ODIR)/*.o $(EXE) $(TEST_EXE)
+	rm -f $(ODIR)/*.o $(TEST_EXE)
 
 run:
-	make --no-print-directory && ./$(EXE)
+	make --no-print-directory && ./$(TEST_EXE)
 
 
 .PHONY: clean run
