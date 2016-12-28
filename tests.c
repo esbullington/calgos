@@ -1,12 +1,7 @@
 #include "cutest.h"
 #include "linkedlist.h"
 
-void test_add(void)
-{
-    TEST_CHECK_(1 == 1, "One equals one.");
-}
-
-void test_list(void)
+void test_linked_list(void)
 {
     tLinkedList *ll;
 
@@ -26,8 +21,46 @@ void test_list(void)
     TEST_CHECK_(ll->curr->data == 19, "Test last list item.");
 }
 
+void test_ll_push(void)
+{
+    tLinkedList *ll;
+
+    ll = malloc( sizeof (tLinkedList));
+
+    if (ll == NULL) {
+        perror("malloc failed");
+        exit(EXIT_FAILURE); 
+    } 
+
+    ll_push(ll, 7);
+    TEST_CHECK_(ll->last->data == 7, "Test first list item.");
+
+    ll_push(ll, 8);
+    TEST_CHECK_(ll->last->data == 8, "Test second list item.");
+}
+
+void test_ll_pop(void)
+{
+    tLinkedList *ll;
+    ll = malloc( sizeof (tLinkedList));
+
+    if (ll == NULL) {
+        perror("malloc failed");
+        exit(EXIT_FAILURE); 
+    } 
+
+    ll_push(ll, 7);
+    ll_push(ll, 8);
+    ll_push(ll, 9);
+    ll_pop(ll);
+
+    TEST_CHECK_(ll->last->data == 8, "Test second list item after popping.");
+
+}
+
 TEST_LIST = {
-    { "add",  test_add },
-    { "list",  test_list },
+    { "linked list",  test_linked_list },
+    { "linked list push",  test_ll_push },
+    { "linked list pop",  test_ll_pop },
     { 0 }
 };

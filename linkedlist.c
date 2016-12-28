@@ -34,3 +34,39 @@ int allocate_list(tLinkedList *ll, int n)
 	ll->curr = ll->first;
     return 0;
 }
+
+int ll_push(tLinkedList *ll, int data)
+{
+    tNode *new_node = malloc (sizeof (tNode));
+    new_node->data = data;
+
+    if (new_node == NULL) {
+        perror("malloc failed");
+        exit(EXIT_FAILURE); 
+    } 
+
+    if (ll->first == NULL) {
+        ll->first = new_node;
+        ll->last = new_node;
+        ll->curr = new_node;
+        return 0;
+    }
+
+    ll->last->next = new_node;
+    ll->last = new_node;
+    ll->curr = ll->first;
+
+    return 0;
+}
+
+int ll_pop(tLinkedList *ll)
+{
+    ll->curr = ll->first;
+	while (ll->curr->next->next != NULL) {
+		ll->curr = ll->curr->next;
+	}
+    ll->curr->next = NULL;
+    ll->last = ll->curr;
+
+    return 0;
+}

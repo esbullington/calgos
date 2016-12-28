@@ -14,5 +14,7 @@ typedef struct {
 } tLinkedList;
 
 int allocate_list(tLinkedList *ll, int n);
+int ll_push(tLinkedList *ll, int data);
+int ll_pop(tLinkedList *ll);
 
 #endif // LINKEDLIST_H_
