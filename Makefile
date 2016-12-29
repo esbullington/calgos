@@ -15,7 +15,12 @@ _DEPS = linkedlist.h linkedlist_tests.h \
         CuTest.h
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
+ifeq ($(BUILD_ENV),development)
+CFLAGS = -Wall -std=c11 -pedantic -I $(IDIR) -ffunction-sections -fdata-sections
+else
 CFLAGS = -Wall -std=c11 -pedantic -I $(IDIR)
+endif
+
 
 LIBS := -lm
 # LDFLAGS =
@@ -24,6 +29,10 @@ LIBS := -lm
 $(ODIR)/%.o: %.c $(DEPS)
 	@mkdir -p obj
 	$(CC) -c -o $@ $< $(CFLAGS)
+ifeq ($(BUILD_ENV),development)
+	objdump -drh --no-show-raw-insn $@ > $*.asm
+endif
+
 
 test: $(OBJ)
 	$(CC) -o $(TEST_EXE) $(LIBS) $^ tests.c $(CFLAGS)
@@ -31,7 +40,7 @@ test: $(OBJ)
 all: test
 
 clean:
-	rm -f $(ODIR)/*.o $(TEST_EXE)
+	rm -f $(ODIR)/*.o *.asm $(TEST_EXE)
 
 run:
 	make --no-print-directory && ./$(TEST_EXE)
