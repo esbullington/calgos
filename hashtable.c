@@ -7,7 +7,8 @@
 #include "hashtable.h"
 
 /* D. J. Bernstein hash function */
-size_t djb_hash(tHashtable *ht, char *str) {
+size_t djb_hash(tHashtable *ht, char *str)
+{
 	unsigned long hash = 5381;
 	size_t i = 0;
 	while (str[i] != '\0') {
@@ -17,7 +18,8 @@ size_t djb_hash(tHashtable *ht, char *str) {
 	return hash % ht->size;
 }
 
-bool hashtable_init(tHashtable *ht, size_t size) {
+bool hashtable_init(tHashtable *ht, size_t size)
+{
 
 	char *ptr;
 	char **arr = malloc(sizeof(ptr) * size);
@@ -30,6 +32,13 @@ bool hashtable_init(tHashtable *ht, size_t size) {
     ht->arr = arr;
     ht-> size = size;
 	return true;
+}
+
+bool hashtable_destroy(tHashtable *ht)
+{
+    free(ht->arr);
+    free(ht);
+    return true;
 }
 
 bool hashtable_set(tHashtable *ht, char *key, char *value)

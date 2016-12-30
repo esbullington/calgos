@@ -8,6 +8,7 @@ typedef struct {
 } tHashtable;
 
 bool hashtable_init(tHashtable *ht, size_t size);
+bool hashtable_destroy(tHashtable *ht);
 bool hashtable_set(tHashtable *ht, char *key, char *value);
 bool hashtable_get(tHashtable *ht, char *key, char **value);
 
