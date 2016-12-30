@@ -15,7 +15,7 @@ void test_hashtable_get(CuTest *tc)
         exit(EXIT_FAILURE); 
     } 
 
-    hashtable_init(ht);
+    hashtable_init(ht, 1000);
 
     hashtable_set(ht, "testk", "testv");
     char *val = malloc(256);
@@ -35,7 +35,7 @@ void test_hashtable_get_collisions(CuTest *tc)
         exit(EXIT_FAILURE); 
     } 
 
-    hashtable_init(ht);
+    hashtable_init(ht, 1000);
 
     hashtable_set(ht, "playright", "testdram");
     hashtable_set(ht, "snush", "testvivency");

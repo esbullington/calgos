@@ -6,24 +6,29 @@
 #include <math.h>
 #include "hashtable.h"
 
-#define MAX_ARRAY 1000
-
 /* D. J. Bernstein hash function */
-size_t djb_hash(char *str)
-{
-	size_t hash = 5381;
-	int c;
-
-	while ((c = *str++))
-		hash = ((hash << 5) + hash) + c;
-
-	return hash;
+size_t djb_hash(tHashtable *ht, char *str) {
+	unsigned long hash = 5381;
+	size_t i = 0;
+	while (str[i] != '\0') {
+		hash = ((hash << 5) + hash) + (*str);
+		i++;
+	}
+	return hash % ht->size;
 }
 
+bool hashtable_init(tHashtable *ht, size_t size) {
 
-bool hashtable_init(tHashtable *ht) {
-	char *arr[MAX_ARRAY] = { NULL };
+	char *ptr;
+	char **arr = malloc(sizeof(ptr) * size);
+	size_t i;
+
+	for (i = 0; i < size; i++) {
+		arr[i] = NULL;
+	}
+
     ht->arr = arr;
+    ht-> size = size;
 	return true;
 }
 
@@ -31,7 +36,7 @@ bool hashtable_set(tHashtable *ht, char *key, char *value)
 {
     size_t count, probe_by, hashed_key;
 
-	hashed_key = djb_hash(key) % MAX_ARRAY;
+	hashed_key = djb_hash(ht, key);
 
 	if (ht->arr[hashed_key] == NULL) {
 		ht->arr[hashed_key] = value;
@@ -41,7 +46,7 @@ bool hashtable_set(tHashtable *ht, char *key, char *value)
 	count = 1;
 	while (true) {
 		probe_by = (pow(count, 2)) + hashed_key;
-		if (probe_by >= MAX_ARRAY) {
+		if (probe_by >= ht->size) {
 			perror("tHashtable write error");
 			return false;
 		}
@@ -61,7 +66,7 @@ bool hashtable_get(tHashtable *ht, char *key, char **value)
 {
     size_t count, probe_by, hashed_key;
 
-	hashed_key = djb_hash(key) % MAX_ARRAY;
+	hashed_key = djb_hash(ht, key);
 
 	if (ht->arr[hashed_key] != NULL) {
         strcpy(*value, ht->arr[hashed_key]);
@@ -71,7 +76,7 @@ bool hashtable_get(tHashtable *ht, char *key, char **value)
 	count = 1;
 	while (true) {
 		probe_by = (pow(count, 2)) + hashed_key;
-		if (probe_by >= MAX_ARRAY) {
+		if (probe_by >= ht-> size) {
 			perror("tHashtable read error");
 			return false;
 		}
