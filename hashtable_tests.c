@@ -21,7 +21,7 @@ void test_hashtable_get(CuTest *tc)
     char *val = malloc(256);
     hashtable_get(ht, "testk", &val);
     char *expected = "testv";
-	CuAssertStrEquals(tc, expected, val);
+    CuAssertStrEquals(tc, expected, val);
 
     hashtable_destroy(ht);
 }
@@ -44,15 +44,15 @@ void test_hashtable_get_collisions(CuTest *tc)
     char *val = malloc(256);
     hashtable_get(ht, "playright", &val);
     char *expected = "testdram";
-	CuAssertStrEquals(tc, expected, val);
+    CuAssertStrEquals(tc, expected, val);
 
     hashtable_destroy(ht);
 }
 
 CuSuite* HashtableSuite()
 {
-	CuSuite* suite = CuSuiteNew();
-	SUITE_ADD_TEST(suite, test_hashtable_get);
-	SUITE_ADD_TEST(suite, test_hashtable_get_collisions);
+    CuSuite* suite = CuSuiteNew();
+    SUITE_ADD_TEST(suite, test_hashtable_get);
+    SUITE_ADD_TEST(suite, test_hashtable_get_collisions);
     return suite;
 }

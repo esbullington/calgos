@@ -7,19 +7,19 @@
 CuSuite* StrUtilGetSuite();
 
 void RunAllTests(void) {
-	CuString *output = CuStringNew();
-	CuSuite* suite = CuSuiteNew();
-	
-	CuSuiteAddSuite(suite, LinkedListSuite());
-	CuSuiteAddSuite(suite, HashtableSuite());
-	CuSuiteAddSuite(suite, MergesortSuite());
+    CuString *output = CuStringNew();
+    CuSuite* suite = CuSuiteNew();
 
-	CuSuiteRun(suite);
-	CuSuiteSummary(suite, output);
-	CuSuiteDetails(suite, output);
-	printf("%s\n", output->buffer);
+    CuSuiteAddSuite(suite, LinkedListSuite());
+    CuSuiteAddSuite(suite, HashtableSuite());
+    CuSuiteAddSuite(suite, MergesortSuite());
+
+    CuSuiteRun(suite);
+    CuSuiteSummary(suite, output);
+    CuSuiteDetails(suite, output);
+    printf("%s\n", output->buffer);
 }
 
 int main(void) {
-	RunAllTests();
+    RunAllTests();
 }
