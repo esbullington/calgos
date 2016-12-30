@@ -1,9 +1,10 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include "linkedlist.h"
 
-int ll_from_array(tLinkedList *ll, int arr[], int size)
+bool ll_from_array(tLinkedList *ll, int arr[], int size)
 {
     int i;
 
@@ -11,10 +12,10 @@ int ll_from_array(tLinkedList *ll, int arr[], int size)
         ll_push(ll, arr[i]);
     }
 
-    return 0;
+    return true;
 }
 
-int ll_push(tLinkedList *ll, int data)
+bool ll_push(tLinkedList *ll, int data)
 {
     tNode *new_node = malloc (sizeof (tNode));
     new_node->data = data;
@@ -28,7 +29,7 @@ int ll_push(tLinkedList *ll, int data)
         ll->first = new_node;
         ll->last = new_node;
         ll->curr = new_node;
-        return 0;
+        return true;
     }
 
     ll->last->next = new_node;
@@ -36,15 +37,15 @@ int ll_push(tLinkedList *ll, int data)
     ll->last = new_node;
     ll->curr = ll->first;
 
-    return 0;
+    return true;
 }
 
-int ll_pop(tLinkedList *ll)
+bool ll_pop(tLinkedList *ll)
 {
     ll->last = ll->last->prev;
     ll->last->next = NULL;
 
-    return 0;
+    return true;
 }
 
 int ll_find(tLinkedList *ll, int data)
@@ -62,17 +63,17 @@ int ll_find(tLinkedList *ll, int data)
     return -1;
 }
 
-int ll_get_index(tLinkedList *ll, int i, tNode *node)
+bool ll_get_index(tLinkedList *ll, int i, tNode *node)
 {
     int count = 0;
     ll->curr = ll->first;
     while (ll->curr != NULL) {
         if (count == i) {
             *node = *(ll->curr);
-            return 0;
+            return true;
         }
         ll->curr = ll->curr->next;
         count++;
     }
-    return -1;
+    return false;
 }

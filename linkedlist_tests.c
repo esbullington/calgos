@@ -92,7 +92,7 @@ void test_ll_get_index(CuTest *tc)
 
     node = malloc( sizeof (tNode));
     ret_code = ll_get_index(ll, 200, node);
-    CuAssertIntEquals(tc, -1, ret_code);
+    CuAssertIntEquals(tc, 0, ret_code);
 }
 
 void test_ll_from_array(CuTest *tc)
