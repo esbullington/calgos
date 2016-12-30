@@ -16,7 +16,7 @@ typedef struct {
     tNode *last;
 } tLinkedList;
 
-bool allocate_list(tLinkedList *ll, int n);
+tLinkedList *ll_init();
 bool ll_push(tLinkedList *ll, int data);
 bool ll_pop(tLinkedList *ll);
 int ll_find(tLinkedList *ll, int data);

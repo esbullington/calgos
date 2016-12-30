@@ -4,6 +4,13 @@
 #include <stdbool.h>
 #include "linkedlist.h"
 
+tLinkedList *ll_init()
+{
+    tLinkedList *ll;
+    ll = malloc( sizeof (tLinkedList));
+    return ll;
+}
+
 bool ll_from_array(tLinkedList *ll, int arr[], int size)
 {
     int i;

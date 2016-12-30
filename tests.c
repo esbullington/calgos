@@ -2,6 +2,7 @@
 #include "CuTest.h"
 #include "linkedlist_tests.h"
 #include "hashtable_tests.h"
+#include "mergesort_tests.h"
 
 CuSuite* StrUtilGetSuite();
 
@@ -11,6 +12,7 @@ void RunAllTests(void) {
 	
 	CuSuiteAddSuite(suite, LinkedListSuite());
 	CuSuiteAddSuite(suite, HashtableSuite());
+	CuSuiteAddSuite(suite, MergesortSuite());
 
 	CuSuiteRun(suite);
 	CuSuiteSummary(suite, output);

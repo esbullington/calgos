@@ -6,11 +6,10 @@
 void test_ll_push(CuTest *tc)
 {
     tLinkedList *ll;
-
-    ll = malloc( sizeof (tLinkedList));
+    ll = ll_init();
 
     if (ll == NULL) {
-        perror("malloc failed");
+        perror("Linked list initialization failed");
         exit(EXIT_FAILURE); 
     } 
 
@@ -24,10 +23,10 @@ void test_ll_push(CuTest *tc)
 void test_ll_pop(CuTest *tc)
 {
     tLinkedList *ll;
-    ll = malloc( sizeof (tLinkedList));
+    ll = ll_init();
 
     if (ll == NULL) {
-        perror("malloc failed");
+        perror("Linked list initialization failed");
         exit(EXIT_FAILURE); 
     } 
 
@@ -42,12 +41,14 @@ void test_ll_pop(CuTest *tc)
 
 void test_ll_find(CuTest *tc)
 {
-    tLinkedList *ll;
+
     int data;
-    ll = malloc( sizeof (tLinkedList));
+    tLinkedList *ll;
+
+    ll = ll_init();
 
     if (ll == NULL) {
-        perror("malloc failed");
+        perror("Linked list initialization failed");
         exit(EXIT_FAILURE); 
     } 
 
@@ -64,13 +65,14 @@ void test_ll_find(CuTest *tc)
 
 void test_ll_get_index(CuTest *tc)
 {
-    tLinkedList *ll;
     tNode *node;
     int ret_code;
-    ll = malloc( sizeof (tLinkedList));
+    tLinkedList *ll;
+
+    ll = ll_init();
 
     if (ll == NULL) {
-        perror("malloc failed");
+        perror("Linked list initialization failed");
         exit(EXIT_FAILURE); 
     } 
 
@@ -98,10 +100,10 @@ void test_ll_get_index(CuTest *tc)
 void test_ll_from_array(CuTest *tc)
 {
     tLinkedList *ll;
-    ll = malloc( sizeof (tLinkedList));
+    ll = ll_init();
 
     if (ll == NULL) {
-        perror("malloc failed");
+        perror("Linked list initialization failed");
         exit(EXIT_FAILURE); 
     } 
 
