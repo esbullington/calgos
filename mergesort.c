@@ -36,7 +36,7 @@ void merge(int *array, int *first_half, int left_count,
 
 void mergesort(int *array, size_t count)
 {
-	int mid,i, *first_half, *second_half;
+	int mid, *first_half, *second_half;
     // base condition. If the array count < 2, stop recursing
 	if(count < 2) return;
 

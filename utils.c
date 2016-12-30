@@ -13,6 +13,7 @@ tArrays *bisect_array_init(int *array, size_t size)
     }
     a->array = array;
     a->size = size;
+    return a;
 }
 
 tArrays *bisect_array(int *array, size_t size)
