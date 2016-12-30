@@ -7,9 +7,9 @@
 void merge(int *array, int *first_half, int left_count,
            int *second_half,int right_count)
 {
-	// i - to mark the index of first subarray (first_half)
-	// j - to mark the index of second sub-raay (second_half)
-	// k - to mark the index of merged subarray (array)
+	// i: marks the index of first subarray (first_half)
+	// j: marks the index of second subarray (second_half)
+	// k: marks the index of merged subarray (array)
 	int i, j, k;
 	i = 0; j = 0; k =0;
 
@@ -38,7 +38,7 @@ void mergesort(int *array, size_t count)
 {
 	int mid, *first_half, *second_half;
     // base condition. If the array count < 2, stop recursing
-	if(count < 2) return;
+	if (count < 2) return;
 
 	mid = count/2;
 
@@ -59,6 +59,8 @@ void mergesort(int *array, size_t count)
     // then, recursively merge first_half and second_half
     // back into the array as sorted list.
 	merge(array, first_half, mid, second_half, count - mid); 
+
+    free(a);
 	free(first_half);
 	free(second_half);
 }
