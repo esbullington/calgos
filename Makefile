@@ -7,6 +7,7 @@ ODIR = obj
 _OBJ = linkedlist.o linkedlist_tests.o \
        hashtable.o hashtable_tests.o \
        mergesort.o mergesort_tests.o \
+       quicksort.o quicksort_tests.o \
        utils.o CuTest.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
@@ -14,6 +15,7 @@ IDIR = include
 _DEPS = linkedlist.h linkedlist_tests.h \
         hashtable.h hashtable_tests.h \
         mergesort.h mergesort_tests.h \
+        quicksort.h quicksort_tests.h \
         utils.h CuTest.h
 DEPS = $(patsubst %,$(IDIR)/%,$(_DEPS))
 
