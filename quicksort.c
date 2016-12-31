@@ -25,7 +25,6 @@ void partition(int *array, int start_of_array, int end_of_array)
         if (array[i] <= pivot) {
             swap(&array[cursor], &array[i]);
             if (i != end_of_array) cursor++;
-            
         }
         i++;
     }
