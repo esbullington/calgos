@@ -35,9 +35,9 @@ void partition(int *array, int start_of_array, int end_of_array)
     return;
 }
 
-bool quicksort(int *array, size_t count)
+void quicksort(int *array, size_t count)
 {
     // base condition. If the array count < 2, stop recursing
-    if (count < 2) return true;
+    if (count < 2) return;
     partition(array, 0, count - 1);
 }
