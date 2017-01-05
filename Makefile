@@ -5,6 +5,7 @@ TEST_EXE = unittests
 
 ODIR = obj
 _OBJ = linkedlist.o linkedlist_tests.o \
+       queue.o queue_tests.o \
        hashtable.o hashtable_tests.o \
        mergesort.o mergesort_tests.o \
        quicksort.o quicksort_tests.o \
@@ -13,6 +14,7 @@ OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
 IDIR = include
 _DEPS = linkedlist.h linkedlist_tests.h \
+        queue.h queue_tests.h \
         hashtable.h hashtable_tests.h \
         mergesort.h mergesort_tests.h \
         quicksort.h quicksort_tests.h \
